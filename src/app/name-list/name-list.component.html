@@ -1,0 +1,41 @@
+
+<h1 style="text-align:center;">Currency Converter</h1>
+<fieldset style="width: 80%; margin: auto;">
+	<legend>Currency Converter</legend>
+
+
+   <form #currencyForm="ngForm" (ngSubmit)="calculate(currencyForm.value)"> 
+           <div class="flex-row-style">
+        <div class="flex-column-style">
+           Select currency to convert from
+<select id="currencyFrom" name="from"  [(ngModel)]="cur.from">
+<option [value]="curname.code" *ngFor="let curname of names">{{curname.code}} {{curname.nameEn}}</option>
+</select>
+
+</div>
+<div class="flex-column-style">
+    Select amaunt to convert
+<input type="text" id="sum" name="sum" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="input-text" [(ngModel)]="cur.sum" [value]="defaultValue"/>
+<button mat-raised-button color="primary" type="submit">Calculate</button>
+</div>
+<div  class="flex-column-style">
+    Select currency to convert to
+<select id="currencyTo" name="to"  [(ngModel)]="cur.to">
+    <option [value]="curname.code" *ngFor="let curname of names">{{curname.code}} {{curname.nameEn}}</option>
+</select>
+</div>
+
+
+</div>
+              </form>
+       
+</fieldset>
+<div *ngIf="showResult">
+    <fieldset  style="width: 80%; margin: auto; margin-top: 10px;">
+        <legend>Result</legend>
+<div class="result-title">Currency rate</div>
+<div class="result">{{response.rate}}</div>
+<div class="result-title">Currency conversion result</div>
+<div class="result">{{response.result}}</div>
+</fieldset>
+</div>
